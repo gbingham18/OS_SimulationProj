@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "../OS_SimulationProj/PCB.h"
+#include "PCB.h"
 using namespace std;
 
 void readFile() {

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../OS_SimulationProj/PCB.h"
+#include "PCB.h"
 using namespace std;
 
 class Processor {
