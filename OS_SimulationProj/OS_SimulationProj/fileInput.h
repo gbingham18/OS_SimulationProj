@@ -5,11 +5,11 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
-#include "../OS_SimulationProj/PCB.h"
+#include "PCB.h"
 using namespace std;
 
 vector<PCB> readFile(vector<PCB> processes) {
-	ifstream myfile("example.txt");
+	ifstream myfile("..\\OS_SimulationProj\\OS_SimulationProj\\example.txt");
 	string line;
 	vector<int> PCBproperties;
 	vector<int> eventList;

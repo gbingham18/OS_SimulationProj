@@ -10,7 +10,6 @@ using namespace std;
 
 void writeToFile()
 {
-	srand(time(NULL));
 
 	int PID = 0;
 	int arrivalTime = 0;
