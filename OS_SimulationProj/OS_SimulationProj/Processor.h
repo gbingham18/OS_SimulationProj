@@ -2,13 +2,13 @@
 #define PROCESSOR_H_
 #include <iostream>
 #include "PCB.h"
-#include "Random.h"
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
-extern Random my_Rand;
 
 class Processor {
-	public:
+public:
 	Processor() {}
 	void handleProcess(PCB process) {
 		srand(time(NULL));

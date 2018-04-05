@@ -1,0 +1,5 @@
+﻿  OS_SimulationProj.cpp
+c:\users\justice martinez\documents\github\os_simulationproj\os_simulationproj\os_simulationproj\fileoutput.h(14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\justice martinez\documents\github\os_simulationproj\os_simulationproj\os_simulationproj\fileoutput.h(44): warning C4018: '<': signed/unsigned mismatch
+c:\users\justice martinez\documents\github\os_simulationproj\os_simulationproj\os_simulationproj\fileinput.h(9): error C2059: syntax error: 'using namespace'
+c:\users\justice martinez\documents\github\os_simulationproj\os_simulationproj\os_simulationproj\fileinput.h(26): warning C4018: '<': signed/unsigned mismatch

@@ -6,25 +6,25 @@
 using namespace std;
 
 class PCB {
-    public:
-    int PID;
+public:
+	int PID;
 	int arrivalTime;
-    int Priority;
+	int Priority;
 	vector<int> eventList;
-    string State;
+	string State;
 
-    //To be calculated
+	//To be calculated
 	int currentRunTime;
 
 	PCB(int ID, int AT, int Pr, vector<int> EL)
-    {
-        PID = ID;
+	{
+		PID = ID;
 		arrivalTime = AT;
-        Priority  = Pr;
+		Priority = Pr;
 		eventList = EL;
-        currentRunTime = 0;
+		currentRunTime = 0;
 		State = "Start";
-    }
+	}
 
 }
 

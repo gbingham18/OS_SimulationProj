@@ -3,10 +3,11 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "Random.h"
+#include <cstdlib>
+#include <ctime>
+#include <vector>
 using namespace std;
 
-extern Random my_Rand;
 
 void writeToFile()
 {
