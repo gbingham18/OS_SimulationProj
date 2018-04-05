@@ -1,12 +1,11 @@
 #ifndef PROCESSOR_H_
 #define PROCESSOR_H_
 #include <iostream>
-#include <random>
-#include <ctime>
-#include <cmath>
-#include <cstdlib>
 #include "PCB.h"
+#include "Random.h"
 using namespace std;
+
+extern Random my_Rand;
 
 class Processor {
 	public:

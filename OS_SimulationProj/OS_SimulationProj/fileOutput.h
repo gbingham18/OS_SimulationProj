@@ -3,13 +3,14 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <random>
-#include <ctime>
-#include <cmath>
+#include "Random.h"
 using namespace std;
+
+extern Random my_Rand;
 
 void writeToFile()
 {
+	srand(time(NULL));
 
 	int PID = 0;
 	int arrivalTime = 0;

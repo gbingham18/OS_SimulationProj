@@ -9,7 +9,7 @@
 using namespace std;
 
 vector<PCB> readFile(vector<PCB> processes) {
-	ifstream myfile("..\\OS_SimulationProj\\OS_SimulationProj\\example.txt");
+	ifstream myfile("example.txt");
 	string line;
 	vector<int> PCBproperties;
 	vector<int> eventList;

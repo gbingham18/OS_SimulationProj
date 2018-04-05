@@ -6,6 +6,8 @@
 #include "Processor.h"
 using namespace std;
 
+extern Random my_Rand;
+
 class FCFS {
 	vector<PCB> JobQueue;
 	vector<PCB> ReadyQueue;

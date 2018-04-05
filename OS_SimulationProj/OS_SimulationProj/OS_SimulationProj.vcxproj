@@ -144,6 +144,7 @@
     <ClInclude Include="fileOutput.h" />
     <ClInclude Include="PCB.h" />
     <ClInclude Include="Processor.h" />
+    <ClInclude Include="Random.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Simulation.cpp" />
