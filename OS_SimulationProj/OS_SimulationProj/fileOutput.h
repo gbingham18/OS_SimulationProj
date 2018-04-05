@@ -8,39 +8,42 @@ using namespace std;
 
 void writeToFile()
 {
+	srand(time(NULL));
+
 	int PID = 0;
 	int arrivalTime = 0;
 	int burstTime = 0;
 	int priority = 0;
+	vector <int> eventList;
 	ofstream myfile;
 	myfile.open("example.txt");
 	for (int i = 0; i < 1000; i++)
 	{
 		PID++;
-		srand(time(NULL));
 		arrivalTime = rand() % 1000;
 		priority = rand() % 10 + 1;
-		int eventList[] = {0};
+
 		int numEvents = rand() % 5 + 1;
-		for (int i = 0; i < numEvents; i++)
+		for (int j = 0; j < numEvents; j++)
 		{
 			burstTime = rand() % 10 + 1;
-			if (i % 2 == 0)
+			if (j % 2 == 0)
 			{
-				eventList[i] = burstTime;
+				eventList.push_back(burstTime);
 			}
 			else
 			{
-				eventList[i] = burstTime;
+				eventList.push_back(burstTime);
 			}
 		}
-		myfile << PID << " " << arrivalTime << " " << priority;
+		myfile << PID << ' ' << arrivalTime << ' ' << priority;
 
-		for (int i = 0; i < sizeof(eventList); i++)
+		for (int k = 0; k < eventList.size(); k++)
 		{
-			myfile << " " << eventList[i];
+			myfile << ' ' << eventList[k];
 		}
 		myfile << "\n";
+		eventList.clear();
 	}
 	myfile.close();
 }
