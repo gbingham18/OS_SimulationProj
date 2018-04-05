@@ -1,3 +1,5 @@
+#ifndef FCFS_H_
+#define FCFS_H_
 #include <iostream>
 #include <vector>
 #include "PCB.h"
@@ -44,3 +46,5 @@ class FCFS {
 		}
 	}
 };
+
+#endif

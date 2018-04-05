@@ -1,3 +1,5 @@
+#ifndef FILEOUTPUT_H_
+#define FILEOUTPUT_H_
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -47,3 +49,5 @@ void writeToFile()
 	}
 	myfile.close();
 }
+
+#endif

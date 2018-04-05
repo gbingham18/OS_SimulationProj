@@ -1,3 +1,5 @@
+#ifndef FILEINPUT_H_
+#define FILEINPUT_H_
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -30,3 +32,5 @@ vector<PCB> readFile(vector<PCB> processes) {
 	}
 	return processes;
 }
+
+#endif

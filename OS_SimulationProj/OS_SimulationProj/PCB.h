@@ -1,3 +1,5 @@
+#ifndef PCB_H_
+#define PCB_H_
 #include <iostream>
 #include <string>
 #include <vector>
@@ -25,3 +27,5 @@ class PCB {
     }
 
 }
+
+#endif

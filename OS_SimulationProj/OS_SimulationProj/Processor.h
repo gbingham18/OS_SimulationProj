@@ -1,3 +1,5 @@
+#ifndef PROCESSOR_H_
+#define PROCESSOR_H_
 #include <iostream>
 #include <random>
 #include <ctime>
@@ -28,3 +30,5 @@ class Processor {
 	void handleIO(PCB proc) {}
 
 };
+
+#endif
