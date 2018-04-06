@@ -2,22 +2,30 @@
 #define FCFS_H_
 #include <iostream>
 #include <vector>
+#include <queue>
 #include "PCB.h"
-#include "Processor.h"
+#include "FCFSProcessor.h"
 using namespace std;
 
 class FCFS {
+	public:
 	vector<PCB> JobQueue;
 	vector<PCB> ReadyQueue;
-	vector<PCB> BlockedQueue;
+	std::priority_queue<PCB> BlockedQueue;
 	vector<PCB> terminatedProcesses;
-	Processor Processor;
+	FCFSProcessor Processor;
+	int CPUTime;
 	FCFS(vector<PCB> processes) {
+		Processor = FCFSProcessor CPU(this);
+		CPUTime = 1;
 		JobQueue = processes;
 		sortProcesses();
-		updateQueues();
-		Processor.handleProcess(ReadyQueue.back());
-		ReadyQueue.pop_back();
+		while (JobQueue.size() != 0)
+		{
+			addToReadyQueue();
+			Processor.handleProcess(ReadyQueue.back());
+			ReadyQueue.pop_back();
+		}
 	}
 
 	void sortProcesses() {
@@ -25,9 +33,9 @@ class FCFS {
 		while (isSorted == false)
 		{
 			isSorted = true;
-			for (int i = 0; i < JobQueue.size(); i++)
+			for (int i = 0; i < JobQueue.size() - 1; i++)
 			{
-				if (JobQueue[i].arrivalTime > JobQueue[i + 1].arrivalTime)
+				if (JobQueue[i].arrivalTime < JobQueue[i + 1].arrivalTime)
 				{
 					isSorted = false;
 					PCB temp = JobQueue[i];
@@ -38,8 +46,8 @@ class FCFS {
 		}
 	}
 
-	void updateQueues() {
-		while (JobQueue[JobQueue.size() - 1].arrivalTime == 0)
+	void addToReadyQueue() {
+		while (JobQueue[JobQueue.size() - 1].arrivalTime <= CPUTime)
 		{
 			ReadyQueue.push_back(JobQueue.back());
 			JobQueue.pop_back();

@@ -9,12 +9,17 @@
 using namespace std;
 
 vector<PCB> readFile(vector<PCB> processes) {
-	ifstream myfile("example.txt");
+	ifstream myfile("processes.txt");
+	if (!myfile.is_open())
+	{
+		cout << "File not open" << endl;
+	}
 	string line;
 	vector<int> PCBproperties;
 	vector<int> eventList;
-	while (getline(myfile, line))
+	while (!myfile.eof())
 	{
+		getline(myfile, line);
 		istringstream iss(line);
 		for (string s; iss >> s;)
 		{
@@ -29,8 +34,12 @@ vector<PCB> readFile(vector<PCB> processes) {
 		}
 		PCB process(PCBproperties[0], PCBproperties[1], PCBproperties[2], eventList);
 		processes.push_back(process);
+		cout << processes.size() << endl;
+		PCBproperties.clear();
+		eventList.clear();
 	}
+	cout << "done" << endl;
 	return processes;
-}
+};
 
 #endif

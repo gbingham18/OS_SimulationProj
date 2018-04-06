@@ -19,11 +19,15 @@ void writeToFile()
 	int priority = 0;
 	vector <int> eventList;
 	ofstream myfile;
-	myfile.open("example.txt");
-	for (int i = 0; i < 1000; i++)
+	myfile.open("processes.txt");
+	if (!myfile.is_open())
+	{
+		cout << "File could not be opened" << endl;
+	}
+	for (int i = 0; i < 700; i++)
 	{
 		PID++;
-		arrivalTime = rand() % 1000;
+		arrivalTime = rand() % 700;
 		priority = rand() % 10 + 1;
 
 		int numEvents = rand() % 5 + 1;
@@ -49,6 +53,6 @@ void writeToFile()
 		eventList.clear();
 	}
 	myfile.close();
-}
+};
 
 #endif
