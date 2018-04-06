@@ -16,7 +16,8 @@ class FCFS {
 	FCFSProcessor Processor;
 	int CPUTime;
 	FCFS(vector<PCB> processes) {
-		Processor = FCFSProcessor CPU(this);
+		FCFSProcessor CPU(this);
+		Processor = CPU;
 		CPUTime = 1;
 		JobQueue = processes;
 		sortProcesses();
