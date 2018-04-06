@@ -25,12 +25,15 @@ public:
 			int IO = rand() % 5 + 1;
 			if (IO == 3)
 			{
-				handleIO(process);
+				int IOburst = process.eventList.back();
+				process.eventList.pop_back();
+				handleIO(process, CPUTime, IOburst);
 				break;
 			}
 			else
 			{
 				CPUTime += process.eventList.back();
+				process.eventList.pop_back();
 			}
 		}
 		if (process.eventList.size() == 0)
@@ -39,12 +42,9 @@ public:
 		}
 	}
 
-	void handleIO(PCB &proc) {
+	void handleIO(PCB &proc, int &CPUTime, int IOburst) {
+		proc.endBlockedTime = CPUTime;
 		fcfs.BlockedQueue.push(proc);
-	}
-
-	void contextSwitch(int &CPUTime) {
-		CPUTime += 1;
 	}
 
 };

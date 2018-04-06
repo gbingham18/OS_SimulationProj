@@ -53,7 +53,18 @@ class FCFS {
 			ReadyQueue.push_back(JobQueue.back());
 			JobQueue.pop_back();
 		}
+		contextSwitch();
+		while (BlockedQueue.top() <= CPUTime)
+		{
+			ReadyQueue.push_back(BlockedQueue.top())
+			BlockedQueue.pop();
+		}
 	}
+
+	void contextSwitch() {
+		CPUTime += 1;
+	}
+
 };
 
 #endif
