@@ -15,6 +15,11 @@ int main() {
 	//writeToFile();
 	processes = readFile(processes);
 	FCFS fcfs(processes);
+	cout << "# of Terminated Processes: " << fcfs.terminatedProcesses.size() << endl;
+	for (int i = 0; i < fcfs.terminatedProcesses.size() - 1; i++)
+	{
+		cout << fcfs.terminatedProcesses[i].responseTime << endl;
+	}
 	//for (int i = 0; i < processes.size(); i++)
 	//{
 	//	cout << "ID: " << processes[i].PID << " AT: " << processes[i].arrivalTime << " Priority: " << processes[i].Priority;

@@ -30,11 +30,15 @@ public:
 
 	bool operator<(const PCB &other) const
 	{
-		if (endBlockedTime >= other.endBlockedTime) {
+		if (endBlockedTime > other.endBlockedTime) {
 			return true;
 		}
-		else
+		else if (endBlockedTime == other.endBlockedTime && Priority > other.Priority) {
+			return true;
+		}
+		else {
 			return false;
+		}
 	}
 
 };

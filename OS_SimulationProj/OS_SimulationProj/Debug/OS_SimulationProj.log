@@ -2,10 +2,8 @@
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fileoutput.h(14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fileoutput.h(48): warning C4018: '<': signed/unsigned mismatch
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fileinput.h(31): warning C4018: '<': signed/unsigned mismatch
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\processor.h(14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\processor.h(15): warning C4018: '<': signed/unsigned mismatch
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fcfs.h(29): warning C4018: '<': signed/unsigned mismatch
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fcfs.h(40): warning C4018: '<': signed/unsigned mismatch
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fcfs.h(44): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fcfs.h(89): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(19): warning C4018: '<': signed/unsigned mismatch
   OS_SimulationProj.vcxproj -> C:\Users\gbingham18\Desktop\OS_SimulationProj\Debug\OS_SimulationProj.exe
   OS_SimulationProj.vcxproj -> C:\Users\gbingham18\Desktop\OS_SimulationProj\Debug\OS_SimulationProj.pdb (Partial PDB)

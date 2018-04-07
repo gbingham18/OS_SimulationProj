@@ -3,8 +3,9 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <cstdlib>
+#include <ctime>
 #include "PCB.h"
-#include "FCFSProcessor.h"
 using namespace std;
 
 class FCFS {
@@ -13,23 +14,29 @@ class FCFS {
 	vector<PCB> ReadyQueue;
 	std::priority_queue<PCB> BlockedQueue;
 	vector<PCB> terminatedProcesses;
-	FCFSProcessor Processor;
 	int CPUTime;
+	FCFS() {}
 	FCFS(vector<PCB> processes) {
-		FCFSProcessor CPU(this);
-		Processor = CPU;
 		CPUTime = 1;
 		JobQueue = processes;
 		sortProcesses();
-		while (JobQueue.size() != 0)
+		while (!(ReadyQueue.size() == 0 && JobQueue.size() == 0 && BlockedQueue.size() == 0))
 		{
 			addToReadyQueue();
-			Processor.handleProcess(ReadyQueue.back());
-			ReadyQueue.pop_back();
+			//cout << "JobQueue size: " << JobQueue.size() << endl;
+			if (ReadyQueue.size() != 0) {
+				handleProcess(ReadyQueue.back());
+				ReadyQueue.pop_back();
+				contextSwitch();
+			}
+			else {
+				CPUTime++;
+			}
 		}
 	}
 
 	void sortProcesses() {
+		//cout << "here" << endl;
 		bool isSorted = false;
 		while (isSorted == false)
 		{
@@ -48,21 +55,70 @@ class FCFS {
 	}
 
 	void addToReadyQueue() {
-		while (JobQueue[JobQueue.size() - 1].arrivalTime <= CPUTime)
+		//cout << "here0" << endl;
+		while(JobQueue.size() != 0 && JobQueue[JobQueue.size() - 1].arrivalTime <= CPUTime)
 		{
-			ReadyQueue.push_back(JobQueue.back());
-			JobQueue.pop_back();
+				//cout << "H" << endl;
+				ReadyQueue.push_back(JobQueue.back());
+				//cout << "I" << endl;
+				JobQueue.pop_back();
+				//cout << "J" << endl;
 		}
 		contextSwitch();
-		while (BlockedQueue.top() <= CPUTime)
+		while (BlockedQueue.size() != 0 && BlockedQueue.top().endBlockedTime <= CPUTime)
 		{
-			ReadyQueue.push_back(BlockedQueue.top())
+			//cout << "L" << endl;
+			ReadyQueue.push_back(BlockedQueue.top());
+			//cout << "M" << BlockedQueue.size() <<endl;
 			BlockedQueue.pop();
+			//cout << "N" << endl;
 		}
+		contextSwitch();
 	}
 
 	void contextSwitch() {
 		CPUTime += 1;
+	}
+
+	void handleProcess(PCB &process) {
+		//cout << "here2" << endl;
+		if (process.responseTime < 0)
+		{
+			process.responseTime = CPUTime;
+		}
+		srand(time(NULL));
+		while (process.eventList.size() > 0)
+		{
+			if (process.eventList.size() > 1)
+			{
+				int IO = rand() % 5 + 1;
+				if (IO == 3)
+				{
+					int IOburst = process.eventList.back();
+					process.eventList.pop_back();
+					handleIO(process, IOburst);
+					break;
+				}
+			}
+			else
+			{
+				//cout << "here3" << endl;
+				CPUTime += process.eventList.back();
+				process.eventList.pop_back();
+			}
+		}
+		if (process.eventList.size() == 0)
+		{
+			//cout << "Terminating Process: " << process.PID << endl;
+			terminatedProcesses.push_back(process);
+		}
+	}
+
+	void handleIO(PCB &proc, int IOburst) {
+		//cout << "here5" << endl;
+		proc.endBlockedTime = CPUTime + IOburst;
+		BlockedQueue.push(proc);
+		
 	}
 
 };
