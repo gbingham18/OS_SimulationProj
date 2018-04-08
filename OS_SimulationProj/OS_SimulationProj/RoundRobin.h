@@ -10,9 +10,9 @@
 class RoundRobin {
 public:
 	vector<PCB> JobQueue;
-	vector<PCB> ReadyQueue1;
-	vector<PCB> ReadyQueue2;
-	vector<PCB> ReadyQueue3;
+	queue<PCB> ReadyQueue1;
+	queue<PCB> ReadyQueue2;
+	queue<PCB> ReadyQueue3;
 	std::priority_queue<PCB> BlockedQueue;
 	vector<PCB> terminatedProcesses;
 	int timeQuantum1;
@@ -30,16 +30,31 @@ public:
 		while (!(ReadyQueue1.size() == 0 && ReadyQueue2.size() == 0 && ReadyQueue3.size() == 0 && JobQueue.size() == 0 && BlockedQueue.size() == 0))
 		{
 			addToReadyQueue1();
-			handleProcess(ReadyQueue1.back(), timeQuantum1);
-			handleProcess(ReadyQueue2.back(), timeQuantum2);
-			handleProcess(ReadyQueue3.back(), timeQuantum3);
-			ReadyQueue1.pop_back();
-			contextSwitch();
+			if (!ReadyQueue1.empty()) {
+				ReadyQueue1.front().waitTime += (CPUTime - ReadyQueue1.front().RQTime);
+				handleProcess(ReadyQueue1.front(), timeQuantum1, 1);
+				ReadyQueue1.pop();
+				contextSwitch();
+			}
+			if (!ReadyQueue2.empty()) {
+				ReadyQueue2.front().waitTime += (CPUTime - ReadyQueue2.front().RQTime);
+				handleProcess(ReadyQueue2.front(), timeQuantum2, 2);
+				ReadyQueue2.pop();
+				contextSwitch();
+			}
+			if (!ReadyQueue3.empty()) {
+				ReadyQueue3.front().waitTime += (CPUTime - ReadyQueue3.front().RQTime);
+				handleProcess(ReadyQueue3.front(), timeQuantum3, 3);
+				ReadyQueue3.pop();
+				contextSwitch();
+			}
+			else {
+				CPUTime++;
+			}
 		}
 	}
 
 	void sortProcesses() {
-		//cout << "here" << endl;
 		bool isSorted = false;
 		while (isSorted == false)
 		{
@@ -58,16 +73,30 @@ public:
 	}
 
 	void addToReadyQueue1() {
-		//cout << "here0" << endl;
 		while (JobQueue.size() != 0 && JobQueue[JobQueue.size() - 1].arrivalTime <= CPUTime)
 		{
-			//cout << "H" << endl;
-			ReadyQueue1.push_back(JobQueue.back());
-			//cout << "I" << endl;
+			ReadyQueue1.push(JobQueue.back());
+			ReadyQueue1.back().RQTime = CPUTime;
 			JobQueue.pop_back();
-			//cout << "J" << endl;
 		}
 		contextSwitch();
+		while (BlockedQueue.size() != 0 && BlockedQueue.top().endBlockedTime <= CPUTime)
+		{
+			if (BlockedQueue.top().currQueue == 1) { 
+				ReadyQueue1.push(BlockedQueue.top());
+				ReadyQueue1.back().RQTime = CPUTime;
+			}
+			else if (BlockedQueue.top().currQueue == 2) { 
+				ReadyQueue2.push(BlockedQueue.top());
+				ReadyQueue2.back().RQTime = CPUTime;
+			}
+			else if (BlockedQueue.top().currQueue == 3) { 
+				ReadyQueue3.push(BlockedQueue.top());
+				ReadyQueue3.back().RQTime = CPUTime;
+			}
+			BlockedQueue.pop();
+		}
+
 	}
 
 	void contextSwitch() {
@@ -75,7 +104,7 @@ public:
 	}
 
 	void handleProcess(PCB &process, int tq, int queue) {
-		//cout << "here2" << endl;
+		bool IO = false;
 		if (process.responseTime < 0)
 		{
 			process.responseTime = CPUTime;
@@ -88,43 +117,44 @@ public:
 				int IO = rand() % 5 + 1;
 				if (IO == 3)
 				{
+					IO = true;
 					int IOburst = process.eventList.back();
 					process.eventList.pop_back();
-					handleIO(process, IOburst);
+					handleIO(process, IOburst, queue);
 					break;
 				}
 			}
 			else
-			{
-				//cout << "here3" << endl;				
+			{				
 				CPUTime += min(process.eventList.back(), tq);
 				process.eventList.back() -= tq;
 				if (process.eventList.back() <= 0) {
 					process.eventList.pop_back();
-					if (process.eventList.size() > 0)
-					{
-						if (queue == 1) { ReadyQueue2.push_back(process); }
-						else { ReadyQueue3.push_back(process); }
-					}
-				}
-				else {
-					if (queue == 1) { ReadyQueue2.push_back(process); }
-					else { ReadyQueue3.push_back(process); }
 				}
 			}
 		}
 		if (process.eventList.size() == 0)
 		{
-			//cout << "Terminating Process: " << process.PID << endl;
+			process.turnaroundTime = (CPUTime - process.arrivalTime);
 			terminatedProcesses.push_back(process);
+		}
+		if (!IO)
+		{
+			if (process.eventList.size() > 0 && queue == 1) { 
+				ReadyQueue2.push(process);
+				ReadyQueue2.back().RQTime = CPUTime;
+			}
+			else if (process.eventList.size() > 0) {
+				ReadyQueue3.push(process);
+				ReadyQueue3.back().RQTime = CPUTime;
+			}
 		}
 	}
 
-	void handleIO(PCB &proc, int IOburst) {
-		//cout << "here5" << endl;
+	void handleIO(PCB &proc, int IOburst, int q) {
 		proc.endBlockedTime = CPUTime + IOburst;
+		proc.currQueue == q;
 		BlockedQueue.push(proc);
-
 	}
 
 	int min(int a, int b) {
@@ -132,3 +162,5 @@ public:
 		else { return b; }
 	}
 };
+
+#endif

@@ -12,10 +12,17 @@ public:
 	int Priority;
 	int endBlockedTime;
 	vector<int> eventList;
-	string State;
+
+	//Only referenced in RoundRobin.h
+	int currQueue;
 
 	//To be calculated
 	int responseTime;
+	int waitTime;
+	int turnaroundTime;
+
+	//Used to calculate wait time
+	int RQTime;
 
 	PCB(int ID, int AT, int Pr, vector<int> EL)
 	{
@@ -24,7 +31,8 @@ public:
 		Priority = Pr;
 		eventList = EL;
 		responseTime = -1;
-		State = "Start";
+		waitTime = 0;
+		turnaroundTime = 0;
 		endBlockedTime = -1;
 	}
 

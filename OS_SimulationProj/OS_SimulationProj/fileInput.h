@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <queue>
 #include <sstream>
 #include "PCB.h"
 using namespace std;
@@ -34,11 +35,9 @@ vector<PCB> readFile(vector<PCB> processes) {
 		}
 		PCB process(PCBproperties[0], PCBproperties[1], PCBproperties[2], eventList);
 		processes.push_back(process);
-		cout << processes.size() << endl;
 		PCBproperties.clear();
 		eventList.clear();
 	}
-	cout << "done" << endl;
 	return processes;
 };
 

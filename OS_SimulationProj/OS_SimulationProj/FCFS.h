@@ -11,7 +11,7 @@ using namespace std;
 class FCFS {
 	public:
 	vector<PCB> JobQueue;
-	vector<PCB> ReadyQueue;
+	queue<PCB> ReadyQueue;
 	std::priority_queue<PCB> BlockedQueue;
 	vector<PCB> terminatedProcesses;
 	int CPUTime;
@@ -23,10 +23,10 @@ class FCFS {
 		while (!(ReadyQueue.size() == 0 && JobQueue.size() == 0 && BlockedQueue.size() == 0))
 		{
 			addToReadyQueue();
-			//cout << "JobQueue size: " << JobQueue.size() << endl;
 			if (ReadyQueue.size() != 0) {
-				handleProcess(ReadyQueue.back());
-				ReadyQueue.pop_back();
+				ReadyQueue.front().waitTime += (CPUTime - ReadyQueue.front().RQTime);
+				handleProcess(ReadyQueue.front());
+				ReadyQueue.pop();
 				contextSwitch();
 			}
 			else {
@@ -36,7 +36,6 @@ class FCFS {
 	}
 
 	void sortProcesses() {
-		//cout << "here" << endl;
 		bool isSorted = false;
 		while (isSorted == false)
 		{
@@ -55,23 +54,18 @@ class FCFS {
 	}
 
 	void addToReadyQueue() {
-		//cout << "here0" << endl;
 		while(JobQueue.size() != 0 && JobQueue[JobQueue.size() - 1].arrivalTime <= CPUTime)
 		{
-				//cout << "H" << endl;
-				ReadyQueue.push_back(JobQueue.back());
-				//cout << "I" << endl;
+				ReadyQueue.push(JobQueue.back());
+				ReadyQueue.back().RQTime = CPUTime;
 				JobQueue.pop_back();
-				//cout << "J" << endl;
 		}
 		contextSwitch();
 		while (BlockedQueue.size() != 0 && BlockedQueue.top().endBlockedTime <= CPUTime)
 		{
-			//cout << "L" << endl;
-			ReadyQueue.push_back(BlockedQueue.top());
-			//cout << "M" << BlockedQueue.size() <<endl;
+			ReadyQueue.push(BlockedQueue.top());
+			ReadyQueue.back().RQTime = CPUTime;
 			BlockedQueue.pop();
-			//cout << "N" << endl;
 		}
 		contextSwitch();
 	}
@@ -81,7 +75,6 @@ class FCFS {
 	}
 
 	void handleProcess(PCB &process) {
-		//cout << "here2" << endl;
 		if (process.responseTime < 0)
 		{
 			process.responseTime = CPUTime;
@@ -102,23 +95,20 @@ class FCFS {
 			}
 			else
 			{
-				//cout << "here3" << endl;
 				CPUTime += process.eventList.back();
 				process.eventList.pop_back();
 			}
 		}
 		if (process.eventList.size() == 0)
 		{
-			//cout << "Terminating Process: " << process.PID << endl;
+			process.turnaroundTime = (CPUTime - process.arrivalTime);
 			terminatedProcesses.push_back(process);
 		}
 	}
 
 	void handleIO(PCB &proc, int IOburst) {
-		//cout << "here5" << endl;
 		proc.endBlockedTime = CPUTime + IOburst;
 		BlockedQueue.push(proc);
-		
 	}
 
 };
