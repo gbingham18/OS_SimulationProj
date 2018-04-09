@@ -144,6 +144,7 @@
     <ClInclude Include="fileOutput.h" />
     <ClInclude Include="PCB.h" />
     <ClInclude Include="RoundRobin.h" />
+    <ClInclude Include="SPN.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Simulation.cpp" />

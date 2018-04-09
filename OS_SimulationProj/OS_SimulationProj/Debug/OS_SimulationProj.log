@@ -1,17 +1,23 @@
 ﻿  Simulation.cpp
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fileoutput.h(15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fileoutput.h(49): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\pcb.h(46): warning C4018: '<': signed/unsigned mismatch
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fileinput.h(32): warning C4018: '<': signed/unsigned mismatch
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fcfs.h(43): warning C4018: '<': signed/unsigned mismatch
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fcfs.h(82): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\roundrobin.h(62): warning C4018: '<': signed/unsigned mismatch
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\roundrobin.h(112): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\roundrobin.h(156): warning C4553: '==': operator has no effect; did you intend '='?
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(18): warning C4018: '<': signed/unsigned mismatch
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(28): warning C4018: '<': signed/unsigned mismatch
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(38): warning C4018: '<': signed/unsigned mismatch
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(53): warning C4018: '<': signed/unsigned mismatch
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(63): warning C4018: '<': signed/unsigned mismatch
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(73): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\spn.h(44): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\spn.h(86): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(19): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(29): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(39): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(54): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(64): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(74): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(89): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(99): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(109): warning C4018: '<': signed/unsigned mismatch
   OS_SimulationProj.vcxproj -> C:\Users\gbingham18\Desktop\OS_SimulationProj\Debug\OS_SimulationProj.exe
   OS_SimulationProj.vcxproj -> C:\Users\gbingham18\Desktop\OS_SimulationProj\Debug\OS_SimulationProj.pdb (Partial PDB)
