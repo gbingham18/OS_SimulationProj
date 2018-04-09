@@ -113,7 +113,7 @@ void calculateAveragesSPN(SPN spn) {
 	average = sum / spn.terminatedProcesses.size();
 	cout << "Average Turnaround Time SPN: " << average << endl;
 
-	cout << "RR Throughout: One process completed every " << (spn.CPUTime / spn.terminatedProcesses.size()) << " time units" << endl;
+	cout << "SPN Throughout: One process completed every " << (spn.CPUTime / spn.terminatedProcesses.size()) << " time units" << endl;
 	cout << endl;
 }
 
@@ -122,12 +122,14 @@ int main() {
 	//writeToFile();
 	processes = readFile(processes);
 	FCFS fcfs(processes);
-	RoundRobin RR(processes, 1, 2, 3);
+	RoundRobin RR(processes, 2, 2, 2);
 	SPN spn(processes);
 
 	calculateAveragesFCFS(fcfs);
 	calculateAveragesRR(RR);
 	calculateAveragesSPN(spn);
+
+	cout << RR.CS << endl;
 
 	return 0;
 }

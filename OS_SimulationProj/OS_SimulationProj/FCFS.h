@@ -92,6 +92,11 @@ class FCFS {
 					handleIO(process, IOburst);
 					break;
 				}
+				else
+				{
+					CPUTime += process.eventList.back();
+					process.eventList.pop_back();
+				}
 			}
 			else
 			{

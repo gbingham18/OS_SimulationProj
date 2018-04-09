@@ -19,8 +19,10 @@ public:
 	int timeQuantum2;
 	int timeQuantum3;
 	int CPUTime;
+	int CS;
 
 	RoundRobin(vector<PCB> processes, int tq1, int tq2, int tq3) {
+		CS = 0;
 		CPUTime = 1;
 		timeQuantum1 = tq1;
 		timeQuantum2 = tq2;
@@ -101,6 +103,7 @@ public:
 
 	void contextSwitch() {
 		CPUTime += 1;
+		CS++;
 	}
 
 	void handleProcess(PCB &process, int tq, int queue) {
@@ -122,6 +125,14 @@ public:
 					process.eventList.pop_back();
 					handleIO(process, IOburst, queue);
 					break;
+				}
+				else
+				{
+					CPUTime += min(process.eventList.back(), tq);
+					process.eventList.back() -= tq;
+					if (process.eventList.back() <= 0) {
+						process.eventList.pop_back();
+					}
 				}
 			}
 			else

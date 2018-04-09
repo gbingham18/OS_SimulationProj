@@ -5,9 +5,9 @@ c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\pcb.h(46): warni
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fileinput.h(32): warning C4018: '<': signed/unsigned mismatch
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fcfs.h(43): warning C4018: '<': signed/unsigned mismatch
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\fcfs.h(82): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\roundrobin.h(62): warning C4018: '<': signed/unsigned mismatch
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\roundrobin.h(112): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\roundrobin.h(156): warning C4553: '==': operator has no effect; did you intend '='?
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\roundrobin.h(64): warning C4018: '<': signed/unsigned mismatch
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\roundrobin.h(115): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\roundrobin.h(167): warning C4553: '==': operator has no effect; did you intend '='?
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\spn.h(44): warning C4018: '<': signed/unsigned mismatch
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\spn.h(86): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\gbingham18\desktop\os_simulationproj\os_simulationproj\simulation.cpp(19): warning C4018: '<': signed/unsigned mismatch
